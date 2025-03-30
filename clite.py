@@ -4,10 +4,10 @@ tokens = ['INT', 'FLOAT']
 
 t_ignore = ' \t'
 
-#Prueba de capturar enteros positivos
+#Prueba de capturar enteros positivos con guiones bajos intermedios
 def t_INT(t):
-    r'[0-9]+'
-    t.value = int(t.value)
+    r'\d+(?:_\d+)*'
+    t.value = int(t.value.replace('_', ''))
     return t
 
 
