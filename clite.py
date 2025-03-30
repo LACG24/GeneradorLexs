@@ -4,15 +4,16 @@ tokens = ['INT', 'FLOAT']
 
 t_ignore = ' \t'
 
-#Prueba de capturar enteros positivos con guiones bajos intermedios
+# Numeros con guion bajo 'si', pero no dos consecutivos
 def t_INT(t):
-    r'\d+(?:_\d+)*'
-    t.value = int(t.value.replace('_', ''))
+    r'[0-9]+(_[0-9]+)*'
+    t.value = int(t.value.replace('_', '')) # Reemplazar guiones bajos
     return t
+
+#Para que no salga el warning
+def t_error(t):
+    raise lex.LexError(f"Illegal character '{t.value[0]}'", t.value[0])
 
 
 def getLexer():
     return lex.lex()
-
-
-
