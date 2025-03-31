@@ -79,6 +79,12 @@ class TestStrings(unittest.TestCase):
         token = self.lexer.token()
         self.assertEqual(token.type, 'STRING')
         self.assertEqual(token.value, 'Le petit prince')
+    
+    def test_basic_strings(self):
+        self.lexer.input('"Hola \"%s\""')
+        token = self.lexer.token()
+        self.assertEqual(token.type, 'STRING')
+        self.assertEqual(token.value, '"Hola \"%s\""')
                
 if __name__ == '__main__':
     unittest.main()

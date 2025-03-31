@@ -17,7 +17,7 @@ def t_INT(t):
 
 # Regex string aceptando espacios
 def t_STRING(t):
-    r'^[a-zA-Z][a-zA-Z\s%"\\]*$'
+    r'^[a-zA-Z"|"][a-zA-Z\s%"\\]*$'
     t.value = str(t.value)
     return t
 
