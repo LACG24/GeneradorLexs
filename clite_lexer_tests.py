@@ -69,6 +69,16 @@ class TestFloats(unittest.TestCase):
         self.lexer.input('1.5e_1')
         self.lexer.token()
         self.assertRaises(lex.LexError, self.lexer.token)
-
+        
+class TestStrings(unittest.TestCase):
+    def setUp(self):
+        self.lexer = clite.getLexer()
+    
+    def test_basic_strings(self):
+        self.lexer.input('Le petit prince')
+        token = self.lexer.token()
+        self.assertEqual(token.type, 'STRING')
+        self.assertEqual(token.value, 'Le petit prince')
+               
 if __name__ == '__main__':
     unittest.main()
