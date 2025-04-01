@@ -15,10 +15,10 @@ def t_INT(t):
     t.value = int(t.value.replace('_', ''))
     return t
 
-# Regex string aceptando espacios
+# Si hay \", lo dejamos intacto; si no, quitamos las comillas
 def t_STRING(t):
     r'^[a-zA-Z"|"][a-zA-Z\s%"\\]*$'
-    t.value = str(t.value)
+    t.value = t.value if '\\"' in t.value else t.value[1:-1]
     return t
 
 # Funcion para manejar errores
